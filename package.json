@@ -15,12 +15,27 @@
 	},
 	"files": [
 		"dist",
-		"README.md"
+		"packages",
+		"scripts",
+		"tsconfig.json",
+		"README.md",
+		"LICENSE"
 	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/m-rui001/pi-mate-companion.git"
+	},
+	"homepage": "https://github.com/m-rui001/Persisto-Mate",
+	"scripts": {
+		"build": "node scripts/build.mjs"
+	},
 	"peerDependencies": {
 		"@earendil-works/pi-coding-agent": "*",
 		"@earendil-works/pi-agent-core": "*",
 		"@earendil-works/pi-tui": "*",
 		"typebox": "*"
+	},
+	"devDependencies": {
+		"@silvia-odwyer/photon-node": "0.3.4"
 	}
 }

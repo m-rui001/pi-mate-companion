@@ -1311,7 +1311,7 @@ ${val.stack}`;
   wasm.__wbindgen_start();
 });
 
-// ../mate/src/params.ts
+// packages/mate/src/params.ts
 var EMOTION_DECAY = {
   joy: 1 / (45 * 60000),
   trust: 1 / (180 * 60000),
@@ -1440,7 +1440,7 @@ var CUSP = { dominanceMax: -0.35, arousalMin: 0.6 };
 var MAX_OBSERVATIONS = 64;
 var HABITUATION_TAU = 4 * 3600000;
 
-// ../mate/src/rng.ts
+// packages/mate/src/rng.ts
 function nextRandom(seed) {
   let z = seed + 2654435769 | 0;
   z = Math.imul(z ^ z >>> 16, 569420461);
@@ -1470,10 +1470,10 @@ var clamp = (x, lo, hi) => x < lo ? lo : x > hi ? hi : x;
 var clamp01 = (x) => clamp(x, 0, 1);
 var clampPad = (x) => clamp(x, -1, 1);
 
-// ../mate/src/types.ts
+// packages/mate/src/types.ts
 var EMOTIONS = ["joy", "trust", "fear", "surprise", "sadness", "disgust", "anger", "anticipation"];
 
-// ../mate/src/quantum.ts
+// packages/mate/src/quantum.ts
 var N = EMOTIONS.length;
 function fromEmotions(emotions, seed) {
   const raw = EMOTIONS.map((e) => Math.max(emotions[e], 0.000001));
@@ -1811,7 +1811,7 @@ function sanitise(rho) {
   return normalise(out);
 }
 
-// ../mate/src/spark.ts
+// packages/mate/src/spark.ts
 var SEED_BELIEFS = [
   { key: "othersTrustworthy", label: "others are trustworthy", valence: 0.2 },
   { key: "worldSafety", label: "the world is mostly benign", valence: 0.2 }
@@ -1946,7 +1946,7 @@ function clampConfidence(x) {
   return x;
 }
 
-// ../mate/src/birth.ts
+// packages/mate/src/birth.ts
 var NEUTRAL_CHARACTER = {
   selfWorth: 0.55,
   selfEfficacy: 0.5,
@@ -2104,7 +2104,7 @@ function sanitiseState(raw, opts = {}) {
   };
   return state;
 }
-// ../mate/src/i18n.ts
+// packages/mate/src/i18n.ts
 var LANG_NAMES = { en: "English", zh: "中文" };
 function normLang(x) {
   if (typeof x !== "string")
@@ -2505,7 +2505,7 @@ function companionSection(lang) {
   return `${companionGuidance(lang)}${thinkingDeclaration(lang)}`;
 }
 
-// ../mate/src/memory.ts
+// packages/mate/src/memory.ts
 var MEMORY_LABEL_MAX = 160;
 var MAX_TOPICS = 3;
 var STRENGTH_TAU_MS = 5 * 86400000;
@@ -2809,7 +2809,7 @@ function sanitiseMemory(raw) {
   };
 }
 
-// ../mate/src/kernel.ts
+// packages/mate/src/kernel.ts
 function intensityOf(activations) {
   let s = 0;
   for (const e of EMOTIONS)
@@ -3320,7 +3320,7 @@ function sleepTransition(state, t, opts = {}) {
   };
 }
 
-// ../mate/src/catchup.ts
+// packages/mate/src/catchup.ts
 function systemClock() {
   return {
     now: () => Date.now(),
@@ -3414,7 +3414,7 @@ function tickEvent(t) {
 function perfNow() {
   return typeof performance !== "undefined" ? performance.now() : Date.now();
 }
-// ../mate/src/context.ts
+// packages/mate/src/context.ts
 var DRIFTING_TRAIT_SET = new Set(DRIFTING_TRAITS);
 function q(x) {
   const r = Math.round(x * 100) / 100;
@@ -3630,7 +3630,7 @@ function debugView(state, now) {
 function truncate(s, n) {
   return s.length <= n ? s : `${s.slice(0, n - 1)}…`;
 }
-// ../mate/src/daemon.ts
+// packages/mate/src/daemon.ts
 var HABITUATION_PRUNE_MS = 6 * HABITUATION_TAU;
 function thinkHabit(state, topic, trace, now) {
   const habituation = {};
@@ -3747,7 +3747,7 @@ function replyInclination(state, msgWeight, lang = "en") {
   const reason = lean === "withdrawn" ? L.reWithdrawn : lean === "muted" ? L.reMuted : lean === "open" ? L.reOpen : L.reEager;
   return { value, lean, reason };
 }
-// ../mate/src/judge.ts
+// packages/mate/src/judge.ts
 var JUDGE_MAX_TURNS = 10;
 var JUDGE_TURN_CHARS = 320;
 var JUDGE_THINKING_CHARS = 900;
@@ -3876,7 +3876,7 @@ function judgeDue(opts) {
   const minTurns = opts.minUserTurns ?? JUDGE_MIN_USER_TURNS;
   return total >= minTokens && opts.userTurns >= minTurns;
 }
-// ../mate/src/session.ts
+// packages/mate/src/session.ts
 function emptySessions(maxEntries = 200) {
   return { version: 1, maxEntries, entries: [] };
 }
@@ -3935,7 +3935,7 @@ function hhmm(t) {
   const d = new Date(t);
   return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 }
-// ../mate/src/store.ts
+// packages/mate/src/store.ts
 import { existsSync, mkdirSync, readFileSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 var STATE_FILE = "state.json";
@@ -3981,7 +3981,7 @@ function save(p) {
   writeJsonAtomic(join(p.dir, MEMORY_FILE), p.memory);
   writeJsonAtomic(join(p.dir, SESSIONS_FILE), p.sessions);
 }
-// ../coding-agent/src/extensions/mate/alarm-tool.ts
+// packages/coding-agent/src/extensions/mate/alarm-tool.ts
 import { readFileSync as readFileSync2, writeFileSync as writeFileSync2 } from "node:fs";
 import { join as join2 } from "node:path";
 import { Text } from "@earendil-works/pi-tui";
@@ -4136,7 +4136,7 @@ function createAlarmTool(getRuntime, manager) {
   };
 }
 
-// ../coding-agent/src/extensions/mate/inner-voice.ts
+// packages/coding-agent/src/extensions/mate/inner-voice.ts
 var TIMEOUT_MS = 30000;
 var MAX_THOUGHT_CHARS = 240;
 var HINT_WINDOW = 8;
@@ -4220,7 +4220,7 @@ function replyText(content) {
   return content.map((p) => p && typeof p === "object" && ("text" in p) ? String(p.text) : "").join(" ");
 }
 
-// ../coding-agent/src/extensions/mate/judge-run.ts
+// packages/coding-agent/src/extensions/mate/judge-run.ts
 var JUDGE_TIMEOUT_MS = 20000;
 function parseModelRef(ref) {
   const i = ref.indexOf("/");
@@ -4371,7 +4371,7 @@ function judgeFailureLine(reason, lang) {
   return `${head}: ${message}. ${judgeAdvice(lang)}`;
 }
 
-// ../coding-agent/src/extensions/mate/look-tool.ts
+// packages/coding-agent/src/extensions/mate/look-tool.ts
 import { execFile } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { existsSync as existsSync2, rm } from "node:fs";
@@ -4381,7 +4381,7 @@ import { join as join4 } from "node:path";
 import { promisify } from "node:util";
 import { Type as Type2 } from "typebox";
 
-// ../coding-agent/src/utils/exif-orientation.ts
+// packages/coding-agent/src/utils/exif-orientation.ts
 function readOrientationFromTiff(bytes, tiffStart) {
   if (tiffStart + 8 > bytes.length)
     return 1;
@@ -4520,7 +4520,7 @@ function applyExifOrientation(photon, image, originalBytes) {
   }
 }
 
-// ../coding-agent/src/utils/photon.ts
+// packages/coding-agent/src/utils/photon.ts
 import { createRequire as createRequire2 } from "module";
 import * as path from "path";
 import { fileURLToPath } from "url";
@@ -4618,7 +4618,7 @@ async function loadPhoton() {
   return loadPromise;
 }
 
-// ../coding-agent/src/utils/image-convert.ts
+// packages/coding-agent/src/utils/image-convert.ts
 async function convertImageBytesToPng(bytes) {
   const photon = await loadPhoton();
   if (!photon) {
@@ -4639,10 +4639,10 @@ async function convertImageBytesToPng(bytes) {
   }
 }
 
-// ../coding-agent/src/utils/image-resize.ts
+// packages/coding-agent/src/utils/image-resize.ts
 import { Worker } from "node:worker_threads";
 
-// ../coding-agent/src/utils/image-resize-core.ts
+// packages/coding-agent/src/utils/image-resize-core.ts
 var DEFAULT_MAX_BYTES = 4.5 * 1024 * 1024;
 var DEFAULT_OPTIONS = {
   maxWidth: 2000,
@@ -4746,7 +4746,7 @@ async function resizeImageInProcess(inputBytes, mimeType, options) {
   }
 }
 
-// ../coding-agent/src/utils/image-resize.ts
+// packages/coding-agent/src/utils/image-resize.ts
 function toTransferableBytes(input) {
   return new Uint8Array(input);
 }
@@ -4825,7 +4825,7 @@ function formatDimensionNote(result) {
   return `[Image: original ${result.originalWidth}x${result.originalHeight}, displayed at ${result.width}x${result.height}. Multiply coordinates by ${scale.toFixed(2)} to map to original image.]`;
 }
 
-// ../coding-agent/src/utils/image-process.ts
+// packages/coding-agent/src/utils/image-process.ts
 function baseMimeType(mimeType) {
   return mimeType.split(";")[0]?.trim().toLowerCase() ?? mimeType.toLowerCase();
 }
@@ -4907,7 +4907,7 @@ async function processImage(bytes, mimeType, options) {
   };
 }
 
-// ../coding-agent/src/extensions/mate/look-tool.ts
+// packages/coding-agent/src/extensions/mate/look-tool.ts
 var run = promisify(execFile);
 var lookSchema = Type2.Object({
   reason: Type2.Optional(Type2.String({
@@ -5024,7 +5024,7 @@ function createLookTool() {
   };
 }
 
-// ../coding-agent/src/extensions/mate/ponder-tool.ts
+// packages/coding-agent/src/extensions/mate/ponder-tool.ts
 import { Text as Text2 } from "@earendil-works/pi-tui";
 import { Type as Type3 } from "typebox";
 var ponderSchema = Type3.Object({
@@ -5077,7 +5077,7 @@ function createPonderTool(getRuntime) {
   };
 }
 
-// ../coding-agent/src/extensions/mate/remember-tool.ts
+// packages/coding-agent/src/extensions/mate/remember-tool.ts
 import { Text as Text3 } from "@earendil-works/pi-tui";
 import { Type as Type4 } from "typebox";
 var rememberSchema = Type4.Object({
@@ -5139,7 +5139,7 @@ function createRememberTool(getRuntime) {
   };
 }
 
-// ../coding-agent/src/extensions/mate/reminisce-tool.ts
+// packages/coding-agent/src/extensions/mate/reminisce-tool.ts
 import { readdir, readFile as readFile2 } from "node:fs/promises";
 import { join as join5 } from "node:path";
 import { getAgentDir } from "@earendil-works/pi-coding-agent";
@@ -5371,11 +5371,11 @@ function createReminisceTool(getRuntime) {
   };
 }
 
-// ../coding-agent/src/extensions/mate/runtime.ts
+// packages/coding-agent/src/extensions/mate/runtime.ts
 import { join as join6 } from "node:path";
 import { getAgentDir as getAgentDir2 } from "@earendil-works/pi-coding-agent";
 
-// ../coding-agent/src/extensions/mate/appraisal.ts
+// packages/coding-agent/src/extensions/mate/appraisal.ts
 var QUESTION_RE = /\?\s*$|？\s*$|吗[？?]?\s*$|\b(why|what|how|when|where|who|can you|could you|would you|please)\b|为什么|怎么|如何|什么|哪里|谁|能不能|可不可以|可以吗|行吗|好吗|是不是|有没有|请问|帮我|麻烦/i;
 var TASK_RE = /\b(fix|write|build|run|install|create|make|edit|refactor|debug|implement|code|script|deploy)\b|修复|调试|重构|部署|安装|运行一下|跑一下|写一个|写个|创建|生成|实现|改一下|改代码|脚本/i;
 function appraise(text) {
@@ -5387,7 +5387,7 @@ function appraise(text) {
   return { intent, weight: intent === "chat" ? 0 : 0.2 };
 }
 
-// ../coding-agent/src/extensions/mate/runtime.ts
+// packages/coding-agent/src/extensions/mate/runtime.ts
 var CATCHUP_NOTE_MS = 3 * 60000;
 var BEAT_GRID_MS = 60000;
 var THOUGHT_FLOOR_MS = 3 * 60000;
@@ -5920,7 +5920,7 @@ function getRuntime(opts) {
   return instance;
 }
 
-// ../coding-agent/src/extensions/mate/index.ts
+// packages/coding-agent/src/extensions/mate/index.ts
 function parseLangArg(arg) {
   const s = arg.trim().toLowerCase();
   if (!s)
